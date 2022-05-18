@@ -11,8 +11,6 @@ import (
 func MakeGame() Board {
 	rand.Seed(time.Now().UTC().UnixNano())
 
-	// base := make([][]byte, 9)
-
 	board := Board{}
 	board[0] = [9]byte{1, 2, 3, 4, 5, 6, 7, 8, 9}
 	board[1] = [9]byte{4, 5, 6, 7, 8, 9, 1, 2, 3}

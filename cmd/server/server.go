@@ -92,10 +92,6 @@ func signin(w http.ResponseWriter, req *http.Request) {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 		}
 
-		// fmt.Fprintf(w, "Signin: %+v\n", user)
-		// fmt.Fprintf(w, "Signin: %v\n", user)
-		// fmt.Fprintf(w, "Signin.Username: %v\n", signin.Username)
-
 	}
 }
 
@@ -155,8 +151,8 @@ func place(w http.ResponseWriter, req *http.Request) {
 func refresh(w http.ResponseWriter, req *http.Request) {
 
 	var (
-		JWT   string
-		ok    bool
+		JWT string
+		ok  bool
 	)
 
 	switch req.Method {

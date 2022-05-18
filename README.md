@@ -1,8 +1,8 @@
-# Demo Sudoku Software (Go)
+# Demo Sudoku Server (Go)
 
 ## Purpose
 
-The purpose of this repo is to demonstrate typical Go implementation of a Sudoku server and testing of such.  A test client is also available that puts the server through its paces.
+The purpose of this repo is to demonstrate typical Go implementation of a Sudoku server and testing of such.  Test software is available that puts the server through its paces.
 
 ## Theory of Operation
 The signing in process assigns a token to the session and this token is constant throughout the session and is returned to client software as a cookie.  Thereafter all subsequent API calls require the use of this token.  Also, at the point of the sign-in, a new game board is created and also returned to the user. This board is  recorded to a Redis database instance using the assigned token as key.
