@@ -1,4 +1,4 @@
-# Demo Sudoku Server (Go)
+# Sudoku Server (Go)
 
 ## Purpose
 
