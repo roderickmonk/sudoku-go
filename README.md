@@ -1,4 +1,4 @@
-# Demo Sudoku Software
+# Demo Sudoku Software (Go)
 
 ## Purpose
 
