@@ -1,4 +1,4 @@
 #!/bin/bash
 
 alias goserver='nodemon --exec go run cmd/server/server.go --signal SIGTERM'
-alias gotest='go clean -testcache && go test -v ./test'
+alias gotest='go clean -testcache && go test -v ./cmd/server'

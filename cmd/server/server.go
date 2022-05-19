@@ -193,7 +193,7 @@ func setBoard(w http.ResponseWriter, req *http.Request) {
 	default:
 		w.WriteHeader(http.StatusNotImplemented)
 
-	case "GET":
+	case "POST":
 		fmt.Println("refresh")
 
 		// Use the token to ensure the user is known
@@ -243,7 +243,7 @@ func main() {
 	http.HandleFunc("/signin", signin)
 	http.HandleFunc("/game/place", place)
 	http.HandleFunc("/game/refresh", refresh)
-	http.HandleFunc("/game/set", setBoard)
+	http.HandleFunc("/game/setboard", setBoard)
 	http.HandleFunc("/headers", headers)
 
 	http.ListenAndServe(":8090", nil)
