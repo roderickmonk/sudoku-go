@@ -2,7 +2,6 @@ package main
 
 import (
 	"testing"
-	"fmt"
 
 	"github.com/roderickmonk/sudoku-go/internal/sudoku"
 	"github.com/roderickmonk/sudoku-go/internal/test"
@@ -20,7 +19,6 @@ func Test_ColumnConflict(t *testing.T) {
 			test.SetBoard(JWT_Cookie, &board)
 
 			if err := test.Place(JWT_Cookie, sudoku.Placement{I: 8, J: j, Value: 1}); err != nil {
-				fmt.Println ("testing")
 				continue
 			} else {
 				t.Fail()
