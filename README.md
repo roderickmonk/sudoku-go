@@ -51,7 +51,7 @@ There is an underlying assumption that client software is managing a parallel ga
 
 # Testing
 
-    $ go test
+    $ go test ./cmd/server -v
 
 
 
