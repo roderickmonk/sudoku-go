@@ -7,3 +7,5 @@ type Placement struct {
 	Column int
 	Value  byte
 }
+
+

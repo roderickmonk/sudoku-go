@@ -117,12 +117,24 @@ func columnConflict(board *sudoku.Board, placement sudoku.Placement) bool {
 
 func boxConflict(board *sudoku.Board, placement sudoku.Placement) bool {
 
-	for row := 0; row < 9; row++ {
-		if board[row][placement.Column] == placement.Value {
-			return true
+	if box, exists := sudoku.Boxes[[2]int{placement.Row, placement.Column}]; !exists {
+		panic("Cannot find box")
+	} else {
+
+		rows, cols := box[0], box[1]
+
+		for _, row := range rows {
+
+			for _, col := range cols {
+
+				if (row != placement.Row || col != placement.Column) && board[row][col] == placement.Value {
+					return true
+				}
+			}
 		}
+
+		return false
 	}
-	return false
 }
 
 func place(w http.ResponseWriter, req *http.Request) {

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/roderickmonk/sudoku-go/internal/sudoku"
@@ -37,8 +36,6 @@ func Test_BoxConflict(t *testing.T) {
 
 		rows := box[0]
 		cols := box[1]
-
-		fmt.Println("rows:", rows, "cols: ", cols)
 
 		for _, row := range rows {
 
