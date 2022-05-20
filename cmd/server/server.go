@@ -307,8 +307,8 @@ func main() {
 	// Define the Sudoku boxes
 	for height := 0; height < 3; height++ {
 		for width := 0; width < 3; width++ {
-			for row := height; row < height+3; row++ {
-				for column := width; column < width+3; column++ {
+			for row := 3 * height; row < 3*height+3; row++ {
+				for column := 3 * width; column < 3*width+3; column++ {
 					sudoku.Boxes[[2]int{row, column}] = [][]int{
 						{floor3(row), floor3(row) + 1, floor3(row) + 2},
 						{floor3(column), floor3(column) + 1, floor3(column) + 2}}
@@ -317,7 +317,5 @@ func main() {
 		}
 	}
 
-	fmt.Println(sudoku.Boxes)
-	fmt.Println(len(sudoku.Boxes))
 	http.ListenAndServe(":8090", nil)
 }
