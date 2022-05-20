@@ -14,15 +14,13 @@ func Test_RowConflict(t *testing.T) {
 	for i := 0; i < sudoku.BOARD_SIZE; i++ {
 		for j := 0; j < sudoku.BOARD_SIZE; j++ {
 
-            board := sudoku.Board{}
-            board[i][j]=1
-            test.SetBoard(JWT_Cookie, &board)
+			board := sudoku.Board{}
+			board[i][j] = 1
+			test.SetBoard(JWT_Cookie, &board)
 
 			if err := test.Place(JWT_Cookie, sudoku.Placement{Row: i, Column: 8, Value: 1}); err != nil {
-				continue
-			} else {
-                t.Fail()
-            }
+				t.Fail()
+			}
 		}
 	}
 }
