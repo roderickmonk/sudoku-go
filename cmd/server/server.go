@@ -304,8 +304,6 @@ func main() {
 	http.HandleFunc("/game/setboard", setBoard)
 	http.HandleFunc("/headers", headers)
 
-	sudoku.Boxes[[2]int{0, 0}] = [][]int{{0, 1, 2}, {0, 1, 2}}
-
 	// Define the Sudoku boxes
 	for height := 0; height < 3; height++ {
 		for width := 0; width < 3; width++ {
@@ -318,5 +316,8 @@ func main() {
 			}
 		}
 	}
+
+	fmt.Println(sudoku.Boxes)
+	fmt.Println(len(sudoku.Boxes))
 	http.ListenAndServe(":8090", nil)
 }
