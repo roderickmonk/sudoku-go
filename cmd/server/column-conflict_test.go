@@ -18,9 +18,7 @@ func Test_ColumnConflict(t *testing.T) {
 			board[i][j] = 1
 			test.SetBoard(JWT_Cookie, &board)
 
-			if err := test.Place(JWT_Cookie, sudoku.Placement{Row: 8, Column: j, Value: 1}); err != nil {
-				continue
-			} else {
+			if err := test.Place(JWT_Cookie, sudoku.Placement{Row: 8, Column: j, Value: 1}); err == nil {
 				t.Fail()
 			}
 		}
