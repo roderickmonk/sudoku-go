@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/roderickmonk/sudoku-go/internal/sudoku"
@@ -18,7 +19,10 @@ func Test_EmptyBoard(t *testing.T) {
 	for row := 0; row < sudoku.BOARD_SIZE; row++ {
 		for column := 0; column < sudoku.BOARD_SIZE; column++ {
 			if err := test.Place(JWT_Cookie, sudoku.Placement{Row: row, Column: column, Value: 1}); err != nil {
-				t.Fail() 
+
+				fmt.Println(row, column)
+				t.Fail()
+				return
 			}
 		}
 	}

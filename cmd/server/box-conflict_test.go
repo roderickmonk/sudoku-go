@@ -52,6 +52,7 @@ func Test_BoxConflict(t *testing.T) {
 				// The placement must always fail
 				if err := test.Place(JWT_Cookie, sudoku.Placement{Row: conflict_row, Column: conflict_col, Value: 1}); err == nil {
 					t.Fail() // A successful placement is a test failure
+					return
 				}
 			}
 		}
