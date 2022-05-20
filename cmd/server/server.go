@@ -95,6 +95,36 @@ func signin(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
+func rowConflict(board *sudoku.Board, placement sudoku.Placement) bool {
+
+	for col := 0; col < 9; col++ {
+		if board[placement.Row][col] == placement.Value {
+			return true
+		}
+	}
+	return false
+}
+
+func columnConflict(board *sudoku.Board, placement sudoku.Placement) bool {
+
+	for row := 0; row < 9; row++ {
+		if board[row][placement.Column] == placement.Value {
+			return true
+		}
+	}
+	return false
+}
+
+func boxConflict(board *sudoku.Board, placement sudoku.Placement) bool {
+
+	for row := 0; row < 9; row++ {
+		if board[row][placement.Column] == placement.Value {
+			return true
+		}
+	}
+	return false
+}
+
 func place(w http.ResponseWriter, req *http.Request) {
 
 	var (
@@ -130,18 +160,28 @@ func place(w http.ResponseWriter, req *http.Request) {
 		var placement sudoku.Placement
 		err = json.NewDecoder(req.Body).Decode(&placement)
 		if err != nil {
-			http.Error(w, err.Error(), http.StatusForbidden)
+			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
 
 		fmt.Println("place!")
 		fmt.Println("placement", placement)
 
-		if board[placement.I][placement.J] != 0 {
+		if board[placement.Row][placement.Column] != 0 {
 			w.WriteHeader(http.StatusForbidden)
+
+		} else if rowConflict(board, placement) {
+			w.WriteHeader(http.StatusForbidden)
+
+		} else if columnConflict(board, placement) {
+			w.WriteHeader(http.StatusForbidden)
+
+		} else if boxConflict(board, placement) {
+			w.WriteHeader(http.StatusForbidden)
+
 		} else {
 			// Apply the placement and then save the board back to redis
-			board[placement.I][placement.J] = placement.Value
+			board[placement.Row][placement.Column] = placement.Value
 			data, _ := json.Marshal(board)
 			_redis.Set(ctx, JWT, data, 0)
 		}

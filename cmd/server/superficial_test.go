@@ -24,7 +24,7 @@ func Test_General(t *testing.T) {
 	}
 
 
-	if err = test.Place(JWT_Cookie, sudoku.Placement{I: 0, J: 1, Value: 4}); err != nil {
+	if err = test.Place(JWT_Cookie, sudoku.Placement{Row: 0, Column: 1, Value: 4}); err != nil {
 		assert.FailNow(t, err.Error())
 		t.Fail()
 	}
