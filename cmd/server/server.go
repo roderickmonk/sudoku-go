@@ -280,6 +280,11 @@ func headers(w http.ResponseWriter, req *http.Request) {
 
 var _redis *redis.Client
 
+//go:noinline
+func floor3(x int) int {
+	return (x / 3) * 3
+}
+
 func main() {
 
 	_redis = redis.NewClient(&redis.Options{
@@ -292,11 +297,26 @@ func main() {
 	users["user1"] = "%jL1Jt0Irq$Y"
 	users["user2"] = "%jL1Jt0Irq$Y"
 
+	// Setup the endpoints
 	http.HandleFunc("/signin", signin)
 	http.HandleFunc("/game/place", place)
 	http.HandleFunc("/game/refresh", refresh)
 	http.HandleFunc("/game/setboard", setBoard)
 	http.HandleFunc("/headers", headers)
 
+	sudoku.Boxes[[2]int{0, 0}] = [][]int{{0, 1, 2}, {0, 1, 2}}
+
+	// Define the Sudoku boxes
+	for height := 0; height < 3; height++ {
+		for width := 0; width < 3; width++ {
+			for row := height; row < height+3; row++ {
+				for column := width; column < width+3; column++ {
+					sudoku.Boxes[[2]int{row, column}] = [][]int{
+						{floor3(row), floor3(row) + 1, floor3(row) + 2},
+						{floor3(column), floor3(column) + 1, floor3(column) + 2}}
+				}
+			}
+		}
+	}
 	http.ListenAndServe(":8090", nil)
 }
