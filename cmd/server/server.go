@@ -97,7 +97,7 @@ func signin(w http.ResponseWriter, req *http.Request) {
 
 func rowConflict(board *sudoku.Board, placement sudoku.Placement) bool {
 
-	for col := 0; col < 9; col++ {
+	for col := 0; col < sudoku.BOARD_SIZE; col++ {
 		if board[placement.Row][col] == placement.Value {
 			return true
 		}
@@ -107,7 +107,7 @@ func rowConflict(board *sudoku.Board, placement sudoku.Placement) bool {
 
 func columnConflict(board *sudoku.Board, placement sudoku.Placement) bool {
 
-	for row := 0; row < 9; row++ {
+	for row := 0; row < sudoku.BOARD_SIZE; row++ {
 		if board[row][placement.Column] == placement.Value {
 			return true
 		}

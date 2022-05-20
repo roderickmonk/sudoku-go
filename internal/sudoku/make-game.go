@@ -12,15 +12,15 @@ func MakeGame() Board {
 	rand.Seed(time.Now().UTC().UnixNano())
 
 	board := Board{}
-	board[0] = [9]byte{1, 2, 3, 4, 5, 6, 7, 8, 9}
-	board[1] = [9]byte{4, 5, 6, 7, 8, 9, 1, 2, 3}
-	board[2] = [9]byte{7, 8, 9, 1, 2, 3, 4, 5, 6}
-	board[3] = [9]byte{2, 3, 4, 5, 6, 7, 8, 9, 1}
-	board[4] = [9]byte{5, 6, 7, 8, 9, 1, 2, 3, 4}
-	board[5] = [9]byte{8, 9, 1, 2, 3, 4, 5, 6, 7}
-	board[6] = [9]byte{3, 4, 5, 6, 7, 8, 9, 1, 2}
-	board[7] = [9]byte{6, 7, 8, 9, 1, 2, 3, 4, 5}
-	board[8] = [9]byte{9, 1, 2, 3, 4, 5, 6, 7, 8}
+	board[0] = [BOARD_SIZE]byte{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	board[1] = [BOARD_SIZE]byte{4, 5, 6, 7, 8, 9, 1, 2, 3}
+	board[2] = [BOARD_SIZE]byte{7, 8, 9, 1, 2, 3, 4, 5, 6}
+	board[3] = [BOARD_SIZE]byte{2, 3, 4, 5, 6, 7, 8, 9, 1}
+	board[4] = [BOARD_SIZE]byte{5, 6, 7, 8, 9, 1, 2, 3, 4}
+	board[5] = [BOARD_SIZE]byte{8, 9, 1, 2, 3, 4, 5, 6, 7}
+	board[6] = [BOARD_SIZE]byte{3, 4, 5, 6, 7, 8, 9, 1, 2}
+	board[7] = [BOARD_SIZE]byte{6, 7, 8, 9, 1, 2, 3, 4, 5}
+	board[8] = [BOARD_SIZE]byte{9, 1, 2, 3, 4, 5, 6, 7, 8}
 
 	createSolvedSudoku(&board)
 	PrintBoard(&board)
@@ -88,8 +88,8 @@ func swapNumber(b *Board) {
 	n1 := byte(randInt(1, 10))
 	n2 := byte(randInt(1, 10))
 
-	for i := 0; i < 9; i++ {
-		for j := 0; j < 9; j++ {
+	for i := 0; i < BOARD_SIZE; i++ {
+		for j := 0; j < BOARD_SIZE; j++ {
 			if b[i][j] == n1 {
 				b[i][j] = n2
 			} else if b[i][j] == n2 {
@@ -107,8 +107,8 @@ func swapNumber(b *Board) {
  * back to (3) with the next cell as current cell.If the number == 9 */
 func solve(b *Board) {
 	var list []int
-	for i := 0; i < 9; i++ {
-		for j := 0; j < 9; j++ {
+	for i := 0; i < BOARD_SIZE; i++ {
+		for j := 0; j < BOARD_SIZE; j++ {
 			if b[j][i] == 0 {
 				list = append(list, (j*10)+i)
 			}
@@ -131,7 +131,7 @@ func solve(b *Board) {
 			}
 		}
 
-		if t > 9 {
+		if t > BOARD_SIZE {
 			if i == len(list) {
 				i = len(list) + 1
 			} else {

@@ -1,6 +1,6 @@
 package sudoku
 
-type Board [9][9]byte
+type Board [BOARD_SIZE][BOARD_SIZE]byte
 
 type Placement struct {
 	Row    int

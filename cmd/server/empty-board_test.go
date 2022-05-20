@@ -15,9 +15,9 @@ func Test_EmptyBoard(t *testing.T) {
 	test.SetBoard(JWT_Cookie, &sudoku.Board{})
 
 	// Ensure all board positions are available
-	for i := 0; i < 9; i++ {
-		for j := 0; j < 9; j++ {
-			if err := test.Place(JWT_Cookie, sudoku.Placement{Row: i, Column: j, Value: 1}); err != nil {
+	for row := 0; row < sudoku.BOARD_SIZE; row++ {
+		for column := 0; column < sudoku.BOARD_SIZE; column++ {
+			if err := test.Place(JWT_Cookie, sudoku.Placement{Row: row, Column: column, Value: 1}); err != nil {
 				t.Fail()
 			}
 		}

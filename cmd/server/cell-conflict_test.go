@@ -11,8 +11,8 @@ func Test_CellConflict(t *testing.T) {
 
 	JWT_Cookie, _, _ := test.SignIn(t)
 
-	for i := 0; i < 9; i++ {
-		for j := 0; j < 9; j++ {
+	for i := 0; i < sudoku.BOARD_SIZE; i++ {
+		for j := 0; j < sudoku.BOARD_SIZE; j++ {
 
 			// Ensure a conflict cell placement for all cell positions
 			board := sudoku.Board{}
