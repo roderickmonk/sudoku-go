@@ -30,8 +30,6 @@ func Refresh(JWT_Cookie *http.Cookie) (*sudoku.Board, error) {
 	}
 	defer resp.Body.Close()
 
-	// fmt.Println("refresh status code:", resp.StatusCode)
-
 	if resp.StatusCode == 200 {
 
 		var body []byte

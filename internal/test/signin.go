@@ -19,8 +19,6 @@ func SignIn(t *testing.T) (*http.Cookie, *sudoku.Board, error) {
 		JWT_Cookie *http.Cookie
 	)
 
-	// fmt.Println("test.SignIn")
-
 	requestBody, _ := json.Marshal(map[string]string{
 		"username": "user1",
 		"password": "%jL1Jt0Irq$Y",

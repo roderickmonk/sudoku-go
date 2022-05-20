@@ -11,8 +11,6 @@ import (
 
 func SetBoard(JWT_Cookie *http.Cookie, board *sudoku.Board) error {
 
-	// fmt.Println("test.SetBoard")
-
 	requestBody, _ := json.Marshal(board)
 
 	req, err := http.NewRequest(
@@ -31,8 +29,6 @@ func SetBoard(JWT_Cookie *http.Cookie, board *sudoku.Board) error {
 		panic(err)
 	}
 	defer resp.Body.Close()
-
-	// fmt.Println("SetBoard status code:", resp.StatusCode)
 
 	if resp.StatusCode == 200 {
 		return nil

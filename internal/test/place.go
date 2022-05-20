@@ -29,7 +29,6 @@ func Place(JWT_Cookie *http.Cookie, placement sudoku.Placement) error {
 		panic(err)
 	}
 	defer resp.Body.Close()
-	// fmt.Printf("place StatusCode: %d\n", resp.StatusCode)
 
 	if resp.StatusCode == 200 {
 		return nil
