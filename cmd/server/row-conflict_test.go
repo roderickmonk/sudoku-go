@@ -18,8 +18,8 @@ func Test_RowConflict(t *testing.T) {
 			board[i][j] = 1
 			test.SetBoard(JWT_Cookie, &board)
 
-			if err := test.Place(JWT_Cookie, sudoku.Placement{Row: i, Column: 8, Value: 1}); err != nil {
-				t.Fail()
+			if err := test.Place(JWT_Cookie, sudoku.Placement{Row: i, Column: 8, Value: 1}); err == nil {
+				t.Fail() // A successful placement is a test failure
 			}
 		}
 	}
