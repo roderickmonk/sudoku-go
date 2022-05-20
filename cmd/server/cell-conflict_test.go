@@ -20,7 +20,7 @@ func Test_CellConflict(t *testing.T) {
 			test.SetBoard(JWT_Cookie, &board)
 
 			if err := test.Place(JWT_Cookie, sudoku.Placement{Row: i, Column: j, Value: 1}); err == nil {
-				t.Fail() // A successful placement is a test failure
+				t.Fail() // A successful placement is a failure
 				return
 			}
 		}
